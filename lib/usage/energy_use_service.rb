@@ -4,6 +4,8 @@ module Usage
 
     include Dry::Monads::Result::Mixin
 
+    # Takes a contract as the context for supply.
+    # Returns a result wrapped in a Monad
     def call(contract:)
       Success(measurements(contract.supply_node))
     end
@@ -24,6 +26,8 @@ module Usage
       -> acc, node_measure { acc += conversion_fn_factory(node_measure[:conversion_fn]).(node_measure[:measurement]) }.curry
     end
 
+    # simulates an event stream of measurements by requesting the Telemetry service to generate a lazy enumerable
+    # of random telemetry value objects.
     def measurement_stream(supply_node)
       mesaurement_stream.measurement_for(supply_node: supply_node)
     end
