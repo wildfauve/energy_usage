@@ -5,9 +5,7 @@ describe "Usage For Period" do
       @contract = Contract::ProvisioningService.new.(party: Customer::Party.find, supply_node: Network::SupplyNode.find).value_or
     end
 
-    it 'provides reads for the month 10 intervals' do
-
-      binding.pry
+    it 'calcs usage based on some randomised data' do
 
       usage = Usage::EnergyUseService.new.(contract: @contract)
 
