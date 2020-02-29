@@ -4,7 +4,9 @@ require 'funcify'
 
 Dir["./lib/**/*.rb"].sort.each {|file| require file }
 
-Fn = Funcify::Fn
+Fn    = Funcify::Fn
+Monad = Funcify::Monad
+
 
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|

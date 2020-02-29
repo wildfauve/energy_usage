@@ -13,7 +13,11 @@ module Usage
     private
 
     def measurements(supply_node)
-      Fn.inject.({}, aggregate).(measurement_stream(supply_node).value_or.first(20))
+      (
+        Fn.inject.({}, aggregate) <<
+        -> lazy_enum { lazy_enum.first(20) } <<
+        Monad.lift
+      ).(measurement_stream(supply_node))
     end
 
     def aggregate
